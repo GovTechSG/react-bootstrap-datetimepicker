@@ -79,7 +79,7 @@ export default class DateTimeField extends Component {
 
 
   onChange = (event) => {
-    const value = event.target == null ? event : event.target.value;
+    const value = event.currentTarget == null ? event : event.currentTarget.value;
     if (moment(value, this.state.inputFormat, true).isValid()) {
       this.setState({
         selectedDate: moment(value, this.state.inputFormat, true),
@@ -295,9 +295,9 @@ export default class DateTimeField extends Component {
   }
 
   closePicker = () => {
-    let style = this.state.widgetStyle;
-    style.left = -9999;
-    style.display = "none";
+    let style = {
+      display: "none"
+    };
     return this.setState({
       showPicker: false,
       widgetStyle: style
@@ -356,8 +356,8 @@ export default class DateTimeField extends Component {
                   widgetStyle={this.state.widgetStyle}
             />
             <div className="input-group date" ref="datetimepicker">
-              <input type="text" className="form-control" onChange={this.onChange} value={this.state.inputValue} {...this.props.inputProps}/>
               <span className="input-group-addon" onClick={this.onClick} onBlur={this.onBlur} ref="dtpbutton"><Glyphicon glyph={this.state.buttonIcon} /></span>
+              <input type="text" className="form-control" onChange={this.onChange} value={this.state.inputValue} {...this.props.inputProps}/>
             </div>
           </div>
     );
