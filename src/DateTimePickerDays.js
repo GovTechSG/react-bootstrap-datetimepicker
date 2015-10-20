@@ -21,13 +21,16 @@ export default class DateTimePickerDays extends Component {
   }
 
   renderDays = () => {
-    var cells, classes, days, html, month, nextMonth, prevMonth, minDate, maxDate, row, year;
+    var cells, classes, days, html, month, nextMonth, prevMonth, selectedDate, minDate, maxDate, row, year;
     year = this.props.viewDate.year();
     month = this.props.viewDate.month();
     prevMonth = this.props.viewDate.clone().subtract(1, "months");
     days = prevMonth.daysInMonth();
     prevMonth.date(days).startOf("week");
     nextMonth = moment(prevMonth).clone().add(42, "d");
+    selectedDate = moment({y: this.props.selectedDate.year(),
+      M: this.props.selectedDate.month(),
+      d: this.props.selectedDate.date()});
     minDate = this.props.minDate ? this.props.minDate.clone() : this.props.minDate;
     maxDate = this.props.maxDate ? this.props.maxDate.clone() : this.props.maxDate;
     html = [];
@@ -41,18 +44,16 @@ export default class DateTimePickerDays extends Component {
       } else if (prevMonth.year() > year || (prevMonth.year() === year && prevMonth.month() > month)) {
         classes.new = true;
       }
-      if (prevMonth.isSame(moment({
-        y: this.props.selectedDate.year(),
-        M: this.props.selectedDate.month(),
-        d: this.props.selectedDate.date()
-      }))) {
+
+      if (prevMonth.isSame(selectedDate)) {
         classes.active = true;
       }
-      if (this.props.showToday) {
+      else if (this.props.showToday) {
         if (prevMonth.isSame(moment(), "day")) {
           classes.today = true;
         }
       }
+
       if ((minDate && prevMonth.isBefore(minDate)) || (maxDate && prevMonth.isAfter(maxDate))) {
         classes.disabled = true;
       }
@@ -70,7 +71,7 @@ export default class DateTimePickerDays extends Component {
 
   render() {
     return (
-    <div className="datepicker-days" style={{display: "block"}}>
+      <div className="datepicker-days" style={{display: "block"}}>
         <table className="table-condensed">
           <thead>
             <tr>
