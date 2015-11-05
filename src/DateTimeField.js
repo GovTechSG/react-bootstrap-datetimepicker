@@ -63,6 +63,10 @@ export default class DateTimeField extends Component {
 
   componentWillReceiveProps = (nextProps) => {
     let state = {};
+    if (nextProps.defaultText !== this.props.defaultText){
+      state.inputValue = nextProps.defaultText;
+    }
+    
     if (nextProps.inputFormat !== this.props.inputFormat) {
         state.inputFormat = nextProps.inputFormat;
         state.inputValue = moment(nextProps.dateTime, nextProps.format, true).format(nextProps.inputFormat);
