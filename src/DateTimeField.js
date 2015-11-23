@@ -304,6 +304,14 @@ export default class DateTimeField extends Component {
     }
   }
 
+  onFocus = () => {
+    return this.props.onFocus();
+  }
+
+  onBlur = () => {
+    return this.props.onBlur();
+  }
+
   closePicker = () => {
     let style = {
       display: "none"
@@ -311,6 +319,8 @@ export default class DateTimeField extends Component {
     return this.setState({
       showPicker: false,
       widgetStyle: style
+    }, function(){
+      return this.onBlur();
     });
   }
 
@@ -367,7 +377,7 @@ export default class DateTimeField extends Component {
         />
         <div className="input-group date" ref="datetimepicker">
           <span className={this.props.prefixClassNames} onClick={this.onClick} ref="dtpbutton"><Glyphicon glyph={this.state.buttonIcon} /></span>
-          <input type="text" className={this.props.classNames} onClick={this.onClick} onChange={this.onChange} value={this.state.inputValue} id={this.props.inputProps.id}/>
+          <input type="text" className={this.props.classNames} onClick={this.onClick} onBlur={this.onBlur} onFocus={this.onFocus} onChange={this.onChange} value={this.state.inputValue} id={this.props.inputProps.id}/>
         </div>
       </div>
     );
