@@ -122,6 +122,7 @@ export default class DateTimeField extends Component {
         this.closePicker();
         this.props.onChange(this.state.selectedDate.format(this.props.format));
         return this.setState({
+          hasChanged: true,
           inputValue: this.state.selectedDate.format(this.state.inputFormat)
         });
       });
