@@ -117,12 +117,12 @@ export default class DateTimeField extends Component {
       else if (target.className.indexOf("old") >= 0) month = this.state.viewDate.month() - 1;
       else month = this.state.viewDate.month();
       return this.setState({
+        hasChanged: true,
         selectedDate: this.state.viewDate.clone().month(month).date(parseInt(e.target.innerHTML)).hour(this.state.selectedDate.hours()).minute(this.state.selectedDate.minutes())
       }, function() {
         this.closePicker();
         this.props.onChange(this.state.selectedDate.format(this.props.format));
         return this.setState({
-          hasChanged: true,
           inputValue: this.state.selectedDate.format(this.state.inputFormat)
         });
       });
