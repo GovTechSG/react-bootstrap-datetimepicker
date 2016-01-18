@@ -310,7 +310,7 @@ export default class DateTimeField extends Component {
   }
 
   onBlur = (e) => {
-    if (e.relatedTarget) {
+    if (e && e.relatedTarget) {
       return this.closePicker();
     }
     else {
