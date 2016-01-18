@@ -309,8 +309,13 @@ export default class DateTimeField extends Component {
     return this.props.onFocus();
   }
 
-  onBlur = () => {
-    return this.props.onBlur();
+  onBlur = (e) => {
+    if (e && e.relatedTarget) {
+      return this.closePicker();
+    }
+    else {
+      return this.props.onBlur();
+    }
   }
 
   closePicker = () => {
@@ -321,7 +326,7 @@ export default class DateTimeField extends Component {
       showPicker: false,
       widgetStyle: style
     }, function(){
-      return this.onBlur();
+      return this.props.onBlur();
     });
   }
 
