@@ -326,7 +326,7 @@ export default class DateTimeField extends Component {
       showPicker: false,
       widgetStyle: style
     }, function(){
-      return this.onBlur();
+      return this.props.onBlur();
     });
   }
 
