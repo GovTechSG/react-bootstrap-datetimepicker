@@ -72,11 +72,7 @@ export default class DateTimeField extends Component {
       if (moment(nextProps.defaultText, nextProps.inputFormat, true).isValid()){
         state.inputValue = nextProps.defaultText;
       }else if (this.props.defaultText !== ''){
-        // Note: state.inputValue = ''; is removed so the date field is not cleared on failing validation
-        // This is a quick fix to the bug where going from a valid date to an invalid date
-        // when typing consumes the first character of invalid input.
-        // See: Pivotal #111849691
-        // state.inputValue = '';
+        state.inputValue = '';
       }
     }
 
