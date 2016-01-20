@@ -68,11 +68,12 @@ export default class DateTimeField extends Component {
 
   componentWillReceiveProps = (nextProps) => {
     let state = {};
-    if (nextProps.defaultText !== this.props.defaultText){
-      if (moment(nextProps.defaultText, nextProps.inputFormat, true).isValid()){
+    if (nextProps.defaultText !== this.props.defaultText) {
+      if (moment(nextProps.defaultText, nextProps.inputFormat, true).isValid()) {
         state.inputValue = nextProps.defaultText;
-      }else if (this.props.defaultText !== ''){
-        state.inputValue = '';
+      } else if (this.props.defaultText !== '') {
+        // Do not consume first character typed in which invalidates date
+        state.inputValue = this.state.inputValue.replace(this.props.defaultText, '');
       }
     }
 
