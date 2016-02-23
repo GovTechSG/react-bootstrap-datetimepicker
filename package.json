@@ -79,6 +79,8 @@
     "webpack-dev-server": "^1.7.0"
   },
   "dependencies": {
+    "bindings": "1.2.x",
+    "nan": "^2.0.5",
     "babel": "^5.6.14",
     "babel-runtime": "^5.6.18",
     "classnames": "^2.1.2",
