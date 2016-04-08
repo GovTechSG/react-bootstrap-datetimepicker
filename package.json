@@ -15,7 +15,9 @@
     "examples": "webpack-dev-server --config ./examples/webpack.config.js",
     "test": "jest",
     "lint": "eslint .",
-    "install": "babel --stage 0 ./src -d ./lib --ignore __tests__/*"
+    "prepublish": "npm run compile",
+    "compile": "babel --stage 0 ./src -d ./lib --ignore __tests__/*",
+    "pack": "npm pack"
   },
   "keywords": [
     "react",
