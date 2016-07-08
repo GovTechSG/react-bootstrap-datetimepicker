@@ -1,6 +1,6 @@
 {
   "name": "react-bootstrap-datetimepicker",
-  "version": "0.0.20h",
+  "version": "0.0.20i",
   "description": "A bootstrap datetime picker component for React.js",
   "homepage": "http://dev.quri.com/react-bootstrap-datetimepicker/",
   "repository": {
@@ -15,7 +15,9 @@
     "examples": "webpack-dev-server --config ./examples/webpack.config.js",
     "test": "jest",
     "lint": "eslint .",
-    "postinstall": "npm run build-npm"
+    "prepublish": "npm run compile",
+    "compile": "babel --stage 0 ./src -d ./lib --ignore __tests__/*",
+    "pack": "npm pack"
   },
   "keywords": [
     "react",
