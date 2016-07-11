@@ -46,7 +46,7 @@ export default class DateTimeField extends Component {
     direction: PropTypes.string,
     showToday: PropTypes.bool,
     viewMode: PropTypes.string,
-    daysOfWeekDisabled: PropTypes.arrayOf(PropTypes.integer)
+    daysOfWeekDisabled: PropTypes.arrayOf(PropTypes.number)
   }
 
   state = {
